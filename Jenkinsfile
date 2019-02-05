@@ -14,7 +14,7 @@ pipeline {
     	stage ('Build Docker Image') {
     		steps {
     		   script {
-    			app=docker.build("dockhub/node-app")
+    			app=docker.build("kartvarma/node-app")
     			app.inside {
     				sh 'echo $(curl http://54.244.72.37:8080)'
     			 	}
