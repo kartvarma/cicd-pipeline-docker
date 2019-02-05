@@ -14,7 +14,7 @@ pipeline {
     	stage ('Build Docker Image') {
     		steps {
     		   script {
-    			app=docker.build("dochub/node-app")
+    			app=docker.build("dockhub/node-app")
     			app.inside {
     				sh 'echo $(curl localhost:8081)'
     			 	}
@@ -25,7 +25,7 @@ pipeline {
     	stage('Push Docker Image') {
     		steps {
     		  script {
-    			docker.withRegistry('https://registry.hub.docker.com','dochub') {
+    			docker.withRegistry('https://registry.hub.docker.com','dockhub') {
     			app.push("${env.BUILD_NUMBER}")
     			app.push("latest")
     			}
