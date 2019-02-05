@@ -12,23 +12,17 @@ pipeline {
     	    }
 
     	stage ('Build Docker Image') {
-    		when {
-    			branch 'master'
-    		     }
     		steps {
     		   script {
     			app=docker.build("dochubcred/node-app")
     			app.inside {
-    				sh 'echo $(curl 54.244.72.37:8081)'
-    			 }
-    	       }
-    	     }
+    				sh 'echo $(curl localhost:8081)'
+    			 	}
+    	       		}
+    	    	 }
     	}
     	
     	stage('Push Docker Image') {
-    		when {
-    			branch 'master'
-    		    }
     		steps {
     		  script {
     			docker.withRegistry('https://registry.hub.docker.com','dochubcred') {
